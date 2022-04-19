@@ -5,6 +5,8 @@ import lombok.Setter;
 import org.hibernate.validator.constraints.Length;
 
 import javax.persistence.*;
+import javax.validation.constraints.Max;
+import javax.validation.constraints.Min;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 import java.sql.Timestamp;
@@ -18,6 +20,8 @@ public class CurvePoint {
     @GeneratedValue(strategy= GenerationType.IDENTITY)
     Integer id;
     @NotNull(message = "must not be null")
+    @Max(value=127, message = "must be less than 128")
+    @Min(value=0, message = "must be positive")
     Integer curveId;
     Timestamp asOfDate;
     Double term;

@@ -19,3 +19,11 @@ values
 (22, 2.02, 2000.0002),
 (33, 3.03, 3000.0003),
 (44, 4.04, 4000.0004);
+
+-- create ratings
+insert into rating   (moodysRating, sandPRating, fitchRating, orderNumber)
+values
+("Moodys rating 001", "SandP rating 001", "Fitch rating 001", 1),
+("Moodys rating 002", "SandP rating 002", "Fitch rating 002", 2),
+("Moodys rating 003", "SandP rating 003", "Fitch rating 003", 3),
+("Moodys rating 004", "SandP rating 004", "Fitch rating 004", 4);

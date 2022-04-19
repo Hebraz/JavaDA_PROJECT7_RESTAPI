@@ -21,7 +21,7 @@ public class ErrorController {
             HttpServletRequest request,
             Model model ) {
 
-        log.error(ex.getMessage());
+        log.error(ex.getStackTrace());
         model.addAttribute("errorMsg",ex.getMessage());
         model.addAttribute("backUrl", "/bidList/list");
         return "error";
