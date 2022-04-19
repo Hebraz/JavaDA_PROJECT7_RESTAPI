@@ -18,6 +18,7 @@ public class BidListController {
 
     private final BidListRepository bidListRepository;
 
+
     public BidListController(BidListRepository bidListService){
         this.bidListRepository = bidListService;
     }

@@ -14,10 +14,9 @@ import org.springframework.test.context.junit4.SpringRunner;
 
 import java.util.List;
 import java.util.Optional;
-/*
+
 @RunWith(SpringRunner.class)
 @SpringBootTest
-@Ignore
 public class CurvePointTests {
 
 	@Autowired
@@ -49,4 +48,3 @@ public class CurvePointTests {
 	}
 
 }
-*/

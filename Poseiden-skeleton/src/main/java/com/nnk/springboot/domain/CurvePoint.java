@@ -15,11 +15,23 @@ import java.sql.Timestamp;
 @Table(name = "curvepoint")
 public class CurvePoint {
     @Id
-    @GeneratedValue(strategy= GenerationType.AUTO)
+    @GeneratedValue(strategy= GenerationType.IDENTITY)
     Integer id;
+    @NotNull(message = "must not be null")
     Integer curveId;
     Timestamp asOfDate;
     Double term;
     Double value;
     Timestamp creationDate;
+
+    public CurvePoint() {
+    }
+
+    public CurvePoint(Integer curveId, Double term, Double value) {
+        this.curveId = curveId;
+        this.term = term;
+        this.value = value;
+    }
+
+
 }

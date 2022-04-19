@@ -11,3 +11,11 @@ values
 ("Account_003", "BID_TYPE_003", "3.33"),
 ("Account_004", "BID_TYPE_004", "4.44");
 
+
+-- create curves point
+insert into curvepoint (curveId, term, value)
+values
+(11, 1.01, 1000.0001),
+(22, 2.02, 2000.0002),
+(33, 3.03, 3000.0003),
+(44, 4.04, 4000.0004);
