@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Required;
 import javax.persistence.*;
 import javax.validation.constraints.Digits;
 import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.Size;
 import java.sql.Date;
 import java.sql.Timestamp;
 
@@ -20,8 +21,10 @@ public class BidList {
     @Column(name = "bidListId")
     private Integer bidListId;
     @NotBlank(message = "Account is mandatory")
+    @Size(max = 30, message = "Must be at most 30 characters in length")
     private String account;
     @NotBlank(message = "Type is mandatory")
+    @Size(max = 30, message = "Must be at most 30 characters in length")
     private String type;
     @Column(name = "bidQuantity")
     private Double bidQuantity;

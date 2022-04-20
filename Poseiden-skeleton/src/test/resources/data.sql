@@ -27,3 +27,11 @@ values
 ("Moodys rating 002", "SandP rating 002", "Fitch rating 002", 2),
 ("Moodys rating 003", "SandP rating 003", "Fitch rating 003", 3),
 ("Moodys rating 004", "SandP rating 004", "Fitch rating 004", 4);
+
+-- create ruleName
+insert into ruleName (name, description, json, template, sqlStr, sqlPart)
+values
+("Rule name 001", "Description rule name 001", "{Json:001}", "Template 001", "Select * from RuleName_001", "Sqlpart 001"),
+("Rule name 002", "Description rule name 002", "{Json:002}", "Template 002", "Select * from RuleName_002", "Sqlpart 002"),
+("Rule name 003", "Description rule name 003", "{Json:003}", "Template 003", "Select * from RuleName_003", "Sqlpart 003"),
+("Rule name 004", "Description rule name 004", "{Json:004}", "Template 004", "Select * from RuleName_004", "Sqlpart 004");
