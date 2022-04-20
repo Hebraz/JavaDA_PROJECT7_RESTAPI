@@ -28,4 +28,14 @@ public class Rating {
     @Max(value=127, message = "must be less than 128")
     @Min(value=0, message = "must be positive")
     Integer orderNumber;
+
+    public Rating(String moodysRating, String sandPRating, String fitchRating, Integer order) {
+        this.moodysRating = moodysRating;
+        this.sandPRating = sandPRating;
+        this.fitchRating = fitchRating;
+        this.orderNumber = order;
+    }
+
+    public Rating() {
+    }
 }

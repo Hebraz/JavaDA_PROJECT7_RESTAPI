@@ -1,4 +1,4 @@
-/*package com.nnk.springboot;
+package com.nnk.springboot;
 
 import com.nnk.springboot.domain.Trade;
 import com.nnk.springboot.repositories.TradeRepository;
@@ -15,7 +15,6 @@ import java.util.Optional;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest
-@Ignore
 public class TradeTests {
 
 	@Autowired
@@ -23,7 +22,7 @@ public class TradeTests {
 
 	@Test
 	public void tradeTest() {
-		Trade trade = new Trade("Trade Account", "Type");
+		Trade trade = new Trade("Trade Account", "Type",0.0);
 
 		// Save
 		trade = tradeRepository.save(trade);
@@ -46,5 +45,3 @@ public class TradeTests {
 		Assert.assertFalse(tradeList.isPresent());
 	}
 }
-
- */

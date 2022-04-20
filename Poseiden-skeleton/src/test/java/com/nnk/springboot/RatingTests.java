@@ -1,4 +1,4 @@
-/*package com.nnk.springboot;
+package com.nnk.springboot;
 
 import com.nnk.springboot.domain.Rating;
 import com.nnk.springboot.repositories.RatingRepository;
@@ -15,7 +15,6 @@ import java.util.Optional;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest
-@Ignore
 public class RatingTests {
 
 	@Autowired
@@ -46,4 +45,3 @@ public class RatingTests {
 		Assert.assertFalse(ratingList.isPresent());
 	}
 }
-*/

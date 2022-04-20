@@ -35,3 +35,11 @@ values
 ("Rule name 002", "Description rule name 002", "{Json:002}", "Template 002", "Select * from RuleName_002", "Sqlpart 002"),
 ("Rule name 003", "Description rule name 003", "{Json:003}", "Template 003", "Select * from RuleName_003", "Sqlpart 003"),
 ("Rule name 004", "Description rule name 004", "{Json:004}", "Template 004", "Select * from RuleName_004", "Sqlpart 004");
+
+--create trade
+insert into trade (account, type, buyQuantity)
+values
+("Account 001", "Type 001", 100.01),
+("Account 002", "Type 002", 200.02),
+("Account 003", "Type 003", 300.03),
+("Account 004", "Type 004", 400.04);

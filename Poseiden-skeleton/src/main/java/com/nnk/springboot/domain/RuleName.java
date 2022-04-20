@@ -29,4 +29,16 @@ public class RuleName {
     String sqlStr;
     @Size(max = 125, message = "Must be at most 125 characters in length")
     String sqlPart;
+
+    public RuleName(String name, String description, String json, String template, String sqlStr, String sqlPart) {
+        this.name = name;
+        this.description = description;
+        this.json = json;
+        this.template = template;
+        this.sqlStr = sqlStr;
+        this.sqlPart = sqlPart;
+    }
+
+    public RuleName() {
+    }
 }
