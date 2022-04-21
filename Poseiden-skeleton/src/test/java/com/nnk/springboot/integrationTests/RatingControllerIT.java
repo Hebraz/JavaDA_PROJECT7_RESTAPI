@@ -323,4 +323,17 @@ public class RatingControllerIT extends TestCase {
         assertThat(content).contains("Error !");
         assertThat(content).contains("Invalid rating Id:5");
     }
+
+    @Test
+    public void testShowAddForm() throws Exception {
+        MvcResult result = this.mvc.perform(MockMvcRequestBuilders.get("/rating/add")
+                        .with(Client.johnBoyd())
+                        .with(csrf()))
+                .andDo(print())
+                .andExpect(status().isOk())
+                .andReturn();
+
+        String content = result.getResponse().getContentAsString();
+        assertThat(content).contains("Add New Rating");
+    }
 }

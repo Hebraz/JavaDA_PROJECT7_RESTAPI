@@ -240,4 +240,17 @@ public class TradeControllerIT extends TestCase {
         assertThat(content).contains("Invalid trade Id:5");
     }
 
+    @Test
+    public void testShowAddForm() throws Exception {
+        MvcResult result = this.mvc.perform(MockMvcRequestBuilders.get("/trade/add")
+                        .with(Client.johnBoyd())
+                        .with(csrf()))
+                .andDo(print())
+                .andExpect(status().isOk())
+                .andReturn();
+
+        String content = result.getResponse().getContentAsString();
+        assertThat(content).contains("Add New Trade");
+    }
+
 }

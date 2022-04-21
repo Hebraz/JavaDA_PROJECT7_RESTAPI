@@ -231,4 +231,17 @@ public class CurveControllerIT extends TestCase {
         assertThat(content).contains("Error !");
         assertThat(content).contains("Invalid curvePoint Id:5");
     }
+
+    @Test
+    public void testShowAddForm() throws Exception {
+        MvcResult result = this.mvc.perform(MockMvcRequestBuilders.get("/curvePoint/add")
+                        .with(Client.johnBoyd())
+                        .with(csrf()))
+                .andDo(print())
+                .andExpect(status().isOk())
+                .andReturn();
+
+        String content = result.getResponse().getContentAsString();
+        assertThat(content).contains("Add New Curve Point");
+    }
 }
