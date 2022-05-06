@@ -8,12 +8,22 @@ import javax.validation.Validator;
 import java.util.Arrays;
 import java.util.List;
 
+/**
+ * Password constraint validator
+ */
 public class PasswordConstraintValidator implements ConstraintValidator<ValidPassword, String> {
 
     @Override
     public void initialize(ValidPassword arg0) {
     }
 
+    /**
+     * Checks password validation : shall be at least 8 characters length.
+     * Shall contain at least one Uppercase character, at least one digit, at least one special character.
+     * @param password password to validate
+     * @param context constraint validator context
+     * @return
+     */
     @Override
     public boolean isValid(String password, ConstraintValidatorContext context) {
         PasswordValidator validator = new PasswordValidator(Arrays.asList(

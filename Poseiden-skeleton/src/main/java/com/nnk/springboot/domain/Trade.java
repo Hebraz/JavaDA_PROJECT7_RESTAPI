@@ -9,6 +9,9 @@ import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Size;
 import java.sql.Timestamp;
 
+/**
+ * Trade entity
+ */
 @Getter
 @Setter
 @Entity
@@ -17,14 +20,18 @@ public class Trade {
     @Id
     @GeneratedValue(strategy= GenerationType.IDENTITY)
     Integer tradeId;
+
     @NotBlank(message = "Account is mandatory")
     @Size(max = 30, message = "Must be at most 30 characters in length")
     String account;
+
     @NotBlank(message = "Type is mandatory")
     @Size(max = 30, message = "Must be at most 30 characters in length")
     String type;
+
     @DecimalMin(value = "0", message = "Must be positive")
     Double buyQuantity;
+
     Double sellQuantity;
     Double buyPrice;
     Double sellPrice;

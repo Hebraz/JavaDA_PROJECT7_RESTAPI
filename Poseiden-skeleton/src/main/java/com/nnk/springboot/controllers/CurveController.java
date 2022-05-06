@@ -14,6 +14,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 import javax.validation.Valid;
 
+/**
+ * Curve controller
+ */
 @Controller
 public class CurveController {
     private final CurvePointRepository curvePointRepository;
@@ -23,19 +26,34 @@ public class CurveController {
         this.curvePointRepository = curvePointRepository;
     }
 
-
+    /**
+     * Shows curvePoint list view
+     * @param model view model
+     * @return
+     */
     @RequestMapping("/curvePoint/list")
     public String home(Model model)
     {
         model.addAttribute("curvePoints",curvePointRepository.findAll());
         return "curvePoint/list";
     }
-
+    /**
+     * Shows curvePoint add view
+     * @param curve curvePoint
+     * @return
+     */
     @GetMapping("/curvePoint/add")
-    public String addBidForm(CurvePoint bid) {
+    public String addBidForm(CurvePoint curve) {
         return "curvePoint/add";
     }
 
+    /**
+     * Adds a curvePoint list
+     * @param curvePoint to add
+     * @param result validation result
+     * @param model view model
+     * @return
+     */
     @PostMapping("/curvePoint/validate")
     public String validate(@Valid CurvePoint curvePoint, BindingResult result, Model model) {
         if (!result.hasErrors()) {
@@ -46,13 +64,26 @@ public class CurveController {
         return "curvePoint/add";
     }
 
+    /**
+     * Shows update form
+     * @param id identifier of the curvePoint
+     * @param model view model
+     * @return
+     */
     @GetMapping("/curvePoint/update/{id}")
     public String showUpdateForm(@PathVariable("id") Integer id, Model model) {
         CurvePoint curvePoint = curvePointRepository.findById(id).orElseThrow(() -> new IllegalArgumentException("Invalid curvePoint Id:" + id));
         model.addAttribute("curvePoint", curvePoint);
         return "curvePoint/update";
     }
-
+    /**
+     * Updates a curvePoint
+     * @param id identifier of the curvePoint
+     * @param curvePoint value
+     * @param result validation result
+     * @param model view model
+     * @return
+     */
     @PostMapping("/curvePoint/update/{id}")
     public String updateBid(@PathVariable("id") Integer id, @Valid CurvePoint curvePoint,
                              BindingResult result, Model model) {
@@ -63,7 +94,12 @@ public class CurveController {
         curvePointRepository.save(curvePoint);
         return "redirect:/curvePoint/list";
     }
-
+    /**
+     * deletes a curvePoint
+     * @param id identifier of the curvePoint
+     * @param model view model
+     * @return
+     */
     @GetMapping("/curvePoint/delete/{id}")
     public String deleteBid(@PathVariable("id") Integer id, Model model) {
         CurvePoint curvePoint = curvePointRepository.findById(id).orElseThrow(() -> new IllegalArgumentException("Invalid curvePoint Id:" + id));

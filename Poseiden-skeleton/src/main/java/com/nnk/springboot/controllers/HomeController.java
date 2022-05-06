@@ -4,15 +4,28 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+/**
+ * Hom controller
+ */
 @Controller
 public class HomeController
 {
+	/**
+	 * Shows home page for role USER
+	 * @param model
+	 * @return
+	 */
 	@RequestMapping("/")
 	public String home(Model model)
 	{
 		return "home";
 	}
 
+	/**
+	 * Shows home page for role ADMIN
+	 * @param model
+	 * @return
+	 */
 	@RequestMapping("/admin/home")
 	public String adminHome(Model model)
 	{

@@ -11,19 +11,30 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import javax.servlet.http.HttpServletRequest;
 
+/**
+ * ErrorController : handles exception
+ */
 @ControllerAdvice
 @Log4j2
 public class ErrorController {
 
+    /**
+     * Handles general exception and shows error page
+     * @param ex exception raised
+     * @param request http request
+     * @param redirectAttributes
+     * @param model view model
+     * @return error page
+     */
     @ExceptionHandler(Exception.class)
     public String handleGeneralExceptions(
             Exception ex,
             HttpServletRequest request,
-            Model model ) {
+            RedirectAttributes redirectAttributes,
+            Model model) {
 
-        log.error(ex.getStackTrace());
-        model.addAttribute("errorMsg",ex.getMessage());
-        model.addAttribute("backUrl", "/bidList/list");
-        return "error";
+        log.error(ex.getMessage());
+        model.addAttribute("error",ex.getMessage());
+        return "/error";
     }
 }

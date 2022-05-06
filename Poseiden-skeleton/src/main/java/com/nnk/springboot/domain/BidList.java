@@ -11,6 +11,9 @@ import javax.validation.constraints.Size;
 import java.sql.Date;
 import java.sql.Timestamp;
 
+/**
+ * Bid list entity
+ */
 @Entity
 @Table(name = "bidlist")
 @Getter
@@ -20,23 +23,31 @@ public class BidList {
     @GeneratedValue(strategy= GenerationType.IDENTITY)
     @Column(name = "bidListId")
     private Integer bidListId;
+
     @NotBlank(message = "Account is mandatory")
     @Size(max = 30, message = "Must be at most 30 characters in length")
     private String account;
+
     @NotBlank(message = "Type is mandatory")
     @Size(max = 30, message = "Must be at most 30 characters in length")
     private String type;
+
     @Column(name = "bidQuantity")
     private Double bidQuantity;
+
     @Column(name = "askQuantity")
     private Double askQuantity;
+
     private Double bid;
     private Double ask;
     private String benchmark;
+
     @Column(name = "bidListDate")
     private Timestamp bidListDate;
+
     private String commentary;
     private String security;
+
     private String status;
     private String trader;
     private String book;

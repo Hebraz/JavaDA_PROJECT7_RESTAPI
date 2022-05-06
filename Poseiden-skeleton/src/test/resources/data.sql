@@ -1,7 +1,7 @@
 -- create users
-insert into Users(fullname, username, password, role) values("Administrator", "admin", "$2a$10$pBV8ILO/s/nao4wVnGLrh.sa/rnr5pDpbeC4E.KNzQWoy8obFZdaa", "ADMIN");
-insert into Users(fullname, username, password, role) values("User", "user", "$2a$10$pBV8ILO/s/nao4wVnGLrh.sa/rnr5pDpbeC4E.KNzQWoy8obFZdaa", "USER");
-insert into Users(fullname, username, password, role) values("John Boyd", "john.boyd@gmail.com", "$2a$10$ep//kwapcPwllF/btNb0kezT9u3P.7rd4qvS1ZDkhVyS8hXSgFvp.", "USER");
+insert into Users(fullname, username, password, role) values("Administrator", "admin", "$2a$10$pBV8ILO/s/nao4wVnGLrh.sa/rnr5pDpbeC4E.KNzQWoy8obFZdaa", "ROLE_ADMIN");
+insert into Users(fullname, username, password, role) values("User", "user", "$2a$10$pBV8ILO/s/nao4wVnGLrh.sa/rnr5pDpbeC4E.KNzQWoy8obFZdaa", "ROLE_USER");
+insert into Users(fullname, username, password, role) values("John Boyd", "john.boyd@gmail.com", "$2a$10$ep//kwapcPwllF/btNb0kezT9u3P.7rd4qvS1ZDkhVyS8hXSgFvp.", "ROLE_USER");
 
 -- create bdlists
 insert into BidList (account, type, bidQuantity)
@@ -36,7 +36,7 @@ values
 ("Rule name 003", "Description rule name 003", "{Json:003}", "Template 003", "Select * from RuleName_003", "Sqlpart 003"),
 ("Rule name 004", "Description rule name 004", "{Json:004}", "Template 004", "Select * from RuleName_004", "Sqlpart 004");
 
---create trade
+-- create trade
 insert into trade (account, type, buyQuantity)
 values
 ("Account 001", "Type 001", 100.01),

@@ -6,25 +6,33 @@ import org.springframework.web.servlet.handler.HandlerInterceptorAdapter;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import java.io.IOException;
 import java.util.Enumeration;
-import java.util.stream.Collectors;
 
+/**
+ * Interceptor for request logging
+ */
 @Component
 @Log4j2
 public class RequestInterceptor extends HandlerInterceptorAdapter {
+    /**
+     * Logs request when received by any controllers
+     * @param request the request to log
+     * @param handler controller from which the request has been intercepted
+     * @return true
+     */
     @Override
     public boolean preHandle(
             HttpServletRequest request,
             HttpServletResponse response,
-            Object handler) throws IOException {
+            Object handler) {
 
         log.info("REQUEST:" + request.getMethod() + " " + request.getRequestURI());
+        //log of body in case of POST
         if ("POST".equalsIgnoreCase(request.getMethod()))
         {
-            Enumeration params =  request.getParameterNames();
+            Enumeration<String> params =  request.getParameterNames();
             while ( params.hasMoreElements() ) {
-                String param = (String)params.nextElement();
+                String param = params.nextElement();
                 if(! param.equalsIgnoreCase("_csrf")){
                     log.info(param + ": '" + request.getParameter(param) + "'");
                 }
@@ -34,6 +42,9 @@ public class RequestInterceptor extends HandlerInterceptorAdapter {
         return true;
     }
 
+    /**
+     * Logs of response status
+     */
     @Override
     public void afterCompletion(
             HttpServletRequest request,

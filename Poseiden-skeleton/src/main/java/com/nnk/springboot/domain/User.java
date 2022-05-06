@@ -8,6 +8,9 @@ import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Size;
 
+/**
+ * User entity
+ */
 @Getter
 @Setter
 @Entity
@@ -16,14 +19,18 @@ public class User {
     @Id
     @GeneratedValue(strategy= GenerationType.IDENTITY)
     private Integer id;
+
     @NotBlank(message = "Username is mandatory")
     @Size(max = 125, message = "Must be at most 125 characters in length")
     private String username;
+
     @ValidPassword
     private String password;
+
     @NotBlank(message = "FullName is mandatory")
     @Size(max = 125, message = "Must be at most 125 characters in length")
     private String fullname;
+
     @NotBlank(message = "Role is mandatory")
     @Size(max = 125, message = "Must be at most 125 characters in length")
     private String role;

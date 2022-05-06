@@ -15,6 +15,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 import javax.validation.Valid;
 
+/**
+ * Rating controller
+ */
 @Controller
 public class RatingController {
     private final RatingRepository ratingRepository;
@@ -24,18 +27,33 @@ public class RatingController {
         this.ratingRepository = ratingRepository;
     }
 
+    /**
+     * Shows rating list view
+     * @param model view model
+     * @return
+     */
     @RequestMapping("/rating/list")
     public String home(Model model)
     {
         model.addAttribute("ratings",ratingRepository.findAll());
         return "rating/list";
     }
-
+    /**
+     * Shows rating add view
+     * @param rating rating
+     * @return
+     */
     @GetMapping("/rating/add")
     public String addRatingForm(Rating rating) {
         return "rating/add";
     }
-
+    /**
+     * Adds a rating list
+     * @param rating to add
+     * @param result validation result
+     * @param model view model
+     * @return
+     */
     @PostMapping("/rating/validate")
     public String validate(@Valid Rating rating, BindingResult result, Model model) {
         if (!result.hasErrors()) {
@@ -45,14 +63,26 @@ public class RatingController {
         }
         return "rating/add";
     }
-
+    /**
+     * Shows update form
+     * @param id identifier of the rating
+     * @param model view model
+     * @return
+     */
     @GetMapping("/rating/update/{id}")
     public String showUpdateForm(@PathVariable("id") Integer id, Model model) {
         Rating rating = ratingRepository.findById(id).orElseThrow(() -> new IllegalArgumentException("Invalid rating Id:" + id));
         model.addAttribute("rating", rating);
         return "rating/update";
     }
-
+    /**
+     * Updates a rating
+     * @param id identifier of the rating
+     * @param rating value
+     * @param result validation result
+     * @param model view model
+     * @return
+     */
     @PostMapping("/rating/update/{id}")
     public String updateRating(@PathVariable("id") Integer id, @Valid Rating rating,
                              BindingResult result, Model model) {
@@ -63,7 +93,12 @@ public class RatingController {
         ratingRepository.save(rating);
         return "redirect:/rating/list";
     }
-
+    /**
+     * deletes a rating
+     * @param id identifier of the rating
+     * @param model view model
+     * @return
+     */
     @GetMapping("/rating/delete/{id}")
     public String deleteRating(@PathVariable("id") Integer id, Model model) {
         Rating rating = ratingRepository.findById(id).orElseThrow(() -> new IllegalArgumentException("Invalid rating Id:" + id));

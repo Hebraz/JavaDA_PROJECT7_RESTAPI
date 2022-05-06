@@ -45,8 +45,9 @@ public class HomeControllerIT extends TestCase {
                     .apply(springSecurity())
                     .build();
         }
+
     @Test
-    public void testhomeForm() throws Exception {
+    public void testhome() throws Exception {
         MvcResult result = this.mvc.perform(MockMvcRequestBuilders.get("/")
                         .with(Client.johnBoyd())
                         .with(csrf()))
@@ -59,14 +60,23 @@ public class HomeControllerIT extends TestCase {
     }
 
     @Test
-    public void adminHome() throws Exception {
+    public void adminHomeAuthorizedForAdmin() throws Exception {
 
             this.mvc.perform(MockMvcRequestBuilders.get("/admin/home")
-                        .with(Client.johnBoyd())
+                        .with(Client.admin())
                         .with(csrf()))
                 .andDo(print())
                 .andExpect(status().isFound())
-                    .andExpect(redirectedUrl("/bidList/list"))
-                .andReturn();
+                    .andExpect(redirectedUrl("/bidList/list"));
+    }
+
+    @Test
+    public void adminHomeDeniedForUser() throws Exception {
+
+        this.mvc.perform(MockMvcRequestBuilders.get("/admin/home")
+                        .with(Client.johnBoyd())
+                        .with(csrf()))
+                .andDo(print())
+                .andExpect(status().isForbidden());
     }
 }

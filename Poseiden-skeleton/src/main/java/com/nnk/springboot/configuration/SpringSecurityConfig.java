@@ -12,6 +12,9 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 
 import javax.sql.DataSource;
 
+/**
+ * Security configuration
+ */
 @Configuration
 @EnableWebSecurity
 public class SpringSecurityConfig extends WebSecurityConfigurerAdapter {
@@ -23,6 +26,11 @@ public class SpringSecurityConfig extends WebSecurityConfigurerAdapter {
         this.dataSource = dataSource;
     }
 
+    /**
+     * Configures the username/password authentication
+     * @param auth an instance AuthenticationManagerBuilder
+     * @throws Exception
+     */
     @Override
     protected  void configure(AuthenticationManagerBuilder auth) throws Exception{
         auth.jdbcAuthentication()
@@ -32,19 +40,34 @@ public class SpringSecurityConfig extends WebSecurityConfigurerAdapter {
                 .authoritiesByUsernameQuery("SELECT username,role FROM users WHERE username = ?");
     }
 
+    /**
+     * Configures URI authorizations
+     * @param http
+     * @throws Exception
+     */
     @Override
     public void configure(HttpSecurity http) throws Exception{
         http.authorizeRequests()
-                .antMatchers("/login*","/", "/css/**").permitAll()
+                .antMatchers( "/", "/login","/user/**","/error", "/css/**").permitAll()
+                .antMatchers("/admin/**").hasRole("ADMIN")
                 .anyRequest().authenticated()
                 .and()
             .formLogin()
                 .defaultSuccessUrl("/bidList/list",true)
                 .and()
+            .oauth2Login()
+                .defaultSuccessUrl("/bidList/list",true)
+                .and()
             .logout()
+                .logoutUrl("/app-logout")
+                .logoutSuccessUrl("/")
                 .permitAll();
     }
 
+    /**
+     * Gets a BCryptPasswordEncoder instance
+     * @return
+     */
     @Bean
     public PasswordEncoder passwordEncoder(){
         return new BCryptPasswordEncoder();

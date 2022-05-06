@@ -12,7 +12,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 import javax.validation.Valid;
 
-
+/**
+ * Bid List controller
+ */
 @Controller
 public class BidListController {
 
@@ -23,6 +25,11 @@ public class BidListController {
         this.bidListRepository = bidListService;
     }
 
+    /**
+     * Shows bid list view
+     * @param model view model
+     * @return
+     */
     @RequestMapping("/bidList/list")
     public String home(Model model)
     {
@@ -30,11 +37,23 @@ public class BidListController {
         return "bidList/list";
     }
 
+    /**
+     * Shows bid list add view
+     * @param bid bid list
+     * @return
+     */
     @GetMapping("/bidList/add")
     public String addBidForm(BidList bid) {
         return "bidList/add";
     }
 
+    /**
+     * Adds a bid list
+     * @param bid bid list to add
+     * @param result validation result
+     * @param model view model
+     * @return
+     */
     @PostMapping("/bidList/validate")
     public String validate(@Valid BidList bid, BindingResult result, Model model) {
         if (!result.hasErrors()) {
@@ -48,6 +67,12 @@ public class BidListController {
         return "bidList/add";
     }
 
+    /**
+     * Shows update form
+     * @param id identifier of the bid List
+     * @param model view model
+     * @return
+     */
     @GetMapping("/bidList/update/{id}")
     public String showUpdateForm(@PathVariable("id") Integer id, Model model) {
         BidList bidList = bidListRepository.findById(id).orElseThrow(() -> new IllegalArgumentException("Invalid bidList Id:" + id));
@@ -55,6 +80,14 @@ public class BidListController {
         return "bidList/update";
     }
 
+    /**
+     * Updates a bidLIst
+     * @param id identifier of the bidList
+     * @param bidList value
+     * @param result validation result
+     * @param model view model
+     * @return
+     */
     @PostMapping("/bidList/update/{id}")
     public String updateBid(@PathVariable("id") Integer id, @Valid BidList bidList,
                              BindingResult result, Model model) {
@@ -66,6 +99,12 @@ public class BidListController {
         return "redirect:/bidList/list";
     }
 
+    /**
+     * deletes a bidList
+     * @param id identifier of the bid List
+     * @param model view model
+     * @return
+     */
     @GetMapping("/bidList/delete/{id}")
     public String deleteBid(@PathVariable("id") Integer id, Model model) {
         BidList bidList = bidListRepository.findById(id).orElseThrow(() -> new IllegalArgumentException("Invalid bidList Id:" + id));

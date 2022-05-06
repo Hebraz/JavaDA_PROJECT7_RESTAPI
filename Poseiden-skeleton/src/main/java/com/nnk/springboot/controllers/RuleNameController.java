@@ -13,6 +13,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 import javax.validation.Valid;
 
+/**
+ * RuleName Controller
+ */
 @Controller
 public class RuleNameController {
     private final RuleNameRepository ruleNameRepository;
@@ -22,18 +25,34 @@ public class RuleNameController {
         this.ruleNameRepository = ruleNameRepository;
     }
 
+    /**
+     * Shows ruleName list view
+     * @param model view model
+     * @return
+     */
     @RequestMapping("/ruleName/list")
     public String home(Model model)
     {
         model.addAttribute("ruleNames",ruleNameRepository.findAll());
         return "ruleName/list";
     }
-
+    /**
+     * Shows ruleName add view
+     * @param bid ruleName
+     * @return
+     */
     @GetMapping("/ruleName/add")
-    public String addRuleForm(RuleName bid) {
+    public String addRuleForm(RuleName ruleName) {
         return "ruleName/add";
     }
 
+    /**
+     * Adds a ruleName list
+     * @param ruleName to add
+     * @param result validation result
+     * @param model view model
+     * @return
+     */
     @PostMapping("/ruleName/validate")
     public String validate(@Valid RuleName ruleName, BindingResult result, Model model) {
         if (!result.hasErrors()) {
@@ -43,14 +62,26 @@ public class RuleNameController {
         }
         return "ruleName/add";
     }
-
+    /**
+     * Shows update form
+     * @param id identifier of the ruleName
+     * @param model view model
+     * @return
+     */
     @GetMapping("/ruleName/update/{id}")
     public String showUpdateForm(@PathVariable("id") Integer id, Model model) {
         RuleName ruleName = ruleNameRepository.findById(id).orElseThrow(() -> new IllegalArgumentException("Invalid ruleName Id:" + id));
         model.addAttribute("ruleName", ruleName);
         return "ruleName/update";
     }
-
+    /**
+     * Updates a ruleName
+     * @param id identifier of the ruleName
+     * @param ruleName value
+     * @param result validation result
+     * @param model view model
+     * @return
+     */
     @PostMapping("/ruleName/update/{id}")
     public String updateRuleName(@PathVariable("id") Integer id, @Valid RuleName ruleName,
                              BindingResult result, Model model) {
@@ -61,7 +92,12 @@ public class RuleNameController {
         ruleNameRepository.save(ruleName);
         return "redirect:/ruleName/list";
     }
-
+    /**
+     * deletes a ruleName
+     * @param id identifier of the ruleName
+     * @param model view model
+     * @return
+     */
     @GetMapping("/ruleName/delete/{id}")
     public String deleteRuleName(@PathVariable("id") Integer id, Model model) {
         RuleName ruleName = ruleNameRepository.findById(id).orElseThrow(() -> new IllegalArgumentException("Invalid ruleName Id:" + id));

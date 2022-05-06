@@ -5,6 +5,9 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.web.servlet.config.annotation.InterceptorRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
+/**
+ * Interceptor configuration for request logging
+ */
 @Configuration
 public class LogConfiguration implements WebMvcConfigurer {
 
@@ -15,6 +18,10 @@ public class LogConfiguration implements WebMvcConfigurer {
         this.requestInterceptor = requestInterceptor;
     }
 
+    /**
+     * Adds requestInterceptor to all input requests
+     * @param registry
+     */
     @Override
     public void addInterceptors(InterceptorRegistry registry) {
         registry.addInterceptor(requestInterceptor)
